@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestor de Gastos</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dashboard-body">
+
+  <!-- ===== BARRA DE NAVEGACIÓN ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dashboard">
+    <div class="container-fluid px-4">
+
+      <!-- Logo -->
+      <a class="navbar-brand brand-dashboard" href="#">
+        <i class="bi bi-wallet2 me-2"></i>GastoSmart
+      </a>
+
+      <!-- Toggle para móvil -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDashboard">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarDashboard">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+
+          <!-- Mes actual -->
+          <li class="nav-item">
+            <span class="nav-link nav-mes" id="etiquetaMesActual">
+              <i class="bi bi-calendar3 me-1"></i><span id="textoMes">—</span>
+            </span>
+          </li>
+
+          <!-- Usuario -->
+          <li class="nav-item">
+            <span class="nav-link nav-usuario">
+              <i class="bi bi-person-circle me-1"></i>
+              <span id="textoUsuario">—</span>
+            </span>
+          </li>
+
+          <!-- Cerrar sesión -->
+          <li class="nav-item">
+            <button class="btn btn-cerrar-sesion" id="btnCerrarSesion">
+              <i class="bi bi-box-arrow-right me-1"></i>Cerrar Sesión
+            </button>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="container-fluid px-4 py-4">
+
+    <!-- Fila de tarjetas de resumen -->
+    <div class="row g-3 mb-4">
+
+      <!-- Tarjeta: Presupuesto mensual -->
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="tarjeta-resumen tarjeta-presupuesto">
+          <div class="tarjeta-icono"><i class="bi bi-piggy-bank"></i></div>
+          <div class="tarjeta-info">
+            <span class="tarjeta-etiqueta">Presupuesto Mensual</span>
+            <span class="tarjeta-valor" id="valorPresupuesto">$0</span>
+          </div>
+          <button class="btn btn-editar-presupuesto" id="btnEditarPresupuesto" title="Editar presupuesto">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Total gastado (mes) -->
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="tarjeta-resumen tarjeta-gastado">
+          <div class="tarjeta-icono"><i class="bi bi-receipt"></i></div>
+          <div class="tarjeta-info">
+            <span class="tarjeta-etiqueta">Gastado este mes</span>
+            <span class="tarjeta-valor" id="valorGastado">$0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Presupuesto restante -->
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="tarjeta-resumen tarjeta-restante">
+          <div class="tarjeta-icono"><i class="bi bi-bar-chart-line"></i></div>
+          <div class="tarjeta-info">
+            <span class="tarjeta-etiqueta">Presupuesto Restante</span>
+            <span class="tarjeta-valor" id="valorRestante">$0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta: Total de registros -->
+      <div class="col-12 col-sm-6 col-xl-3">
+        <div class="tarjeta-resumen tarjeta-registros">
+          <div class="tarjeta-icono"><i class="bi bi-list-check"></i></div>
+          <div class="tarjeta-info">
+            <span class="tarjeta-etiqueta">Gastos Registrados</span>
+            <span class="tarjeta-valor" id="valorRegistros">0</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /row tarjetas -->
+
+    <!-- Fila: Controles superiores (botón agregar + vista) -->
+    <div class="row align-items-center mb-3 g-2">
+      <div class="col-auto">
+        <button class="btn btn-agregar-gasto" id="btnAbrirModalGasto">
+          <i class="bi bi-plus-lg me-2"></i>Registrar Gasto
+        </button>
+      </div>
+      <div class="col-auto ms-auto">
+        <!-- Selector de vista -->
+        <div class="btn-group vista-selector" role="group" aria-label="Seleccionar vista">
+          <input type="radio" class="btn-check" name="vistaGastos" id="vistaUltimoMes" value="mes" checked />
+          <label class="btn btn-outline-secondary" for="vistaUltimoMes">
+            <i class="bi bi-calendar-month me-1"></i>Mes actual
+          </label>
+          <input type="radio" class="btn-check" name="vistaGastos" id="vistaHistorico" value="historico" />
+          <label class="btn btn-outline-secondary" for="vistaHistorico">
+            <i class="bi bi-clock-history me-1"></i>Histórico
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel de filtros -->
+    <div class="panel-filtros mb-4" id="panelFiltros">
+      <div class="row g-2 align-items-end">
+
+        <div class="col-12 col-sm-6 col-md-3">
+          <label class="form-label filtro-label">
+            <i class="bi bi-search me-1"></i>Descripción
+          </label>
+          <input type="text" class="form-control form-control-filtro" id="filtroDescripcion" placeholder="Buscar..." />
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-2">
+          <label class="form-label filtro-label">
+            <i class="bi bi-tag me-1"></i>Categoría
+          </label>
+          <!-- Poblado dinámicamente por script.js desde el objeto CATEGORIAS -->
+          <select class="form-select form-control-filtro" id="filtroCategoria">
+            <option value="">Todas</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-2">
+          <label class="form-label filtro-label">
+            <i class="bi bi-calendar-event me-1"></i>Fecha desde
+          </label>
+          <input type="date" class="form-control form-control-filtro" id="filtroFechaDesde" />
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-2">
+          <label class="form-label filtro-label">
+            <i class="bi bi-calendar-event me-1"></i>Fecha hasta
+          </label>
+          <input type="date" class="form-control form-control-filtro" id="filtroFechaHasta" />
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-2">
+          <label class="form-label filtro-label">
+            <i class="bi bi-currency-dollar me-1"></i>Monto máx.
+          </label>
+          <input type="number" class="form-control form-control-filtro" id="filtroMontoMax" placeholder="2000000" min="0" />
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-1">
+          <button class="btn btn-limpiar-filtros w-100" id="btnLimpiarFiltros" title="Limpiar filtros">
+            <i class="bi bi-trash"></i>
+          </button>
+        </div>
+
+      </div>
+    </div><!-- /panel-filtros -->
+
+    <!-- Tabla de gastos -->
+    <div class="tabla-wrapper">
+      <div class="tabla-header">
+        <h5 class="tabla-titulo mb-0" id="tituloTabla">Gastos del mes actual</h5>
+        <span class="tabla-contador" id="contadorFiltrados">0 registros</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table tabla-gastos">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Descripción</th>
+              <th>Categoría</th>
+              <th class="text-end">Monto</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoTablaGastos">
+            <!-- Filas generadas por JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Estado vacío -->
+      <div class="estado-vacio d-none" id="estadoVacio">
+        <i class="bi bi-inbox"></i>
+        <p>No hay gastos para mostrar</p>
+        <small>Intenta ajustar los filtros o registra un nuevo gasto</small>
+      </div>
+
+    </div><!-- /tabla-wrapper -->
+
+  </main>
+
+  <!-- ===== MODAL: REGISTRAR / EDITAR GASTO ===== -->
+  <div class="modal fade" id="modalGasto" tabindex="-1" aria-labelledby="tituloModalGasto" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content modal-gasto">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="tituloModalGasto">
+            <i class="bi bi-plus-circle me-2"></i>Registrar Gasto
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <!-- ID oculto para modo edición -->
+          <input type="hidden" id="gastoId" />
+
+          <div class="mb-3">
+            <label class="form-label" for="gastoDescripcion">
+              <i class="bi bi-pencil me-1"></i>Descripción <span class="text-danger">*</span>
+            </label>
+            <input type="text" class="form-control" id="gastoDescripcion"
+              placeholder="Ej: Almuerzo en restaurante" minlength="8" />
+            <div class="form-text">Mínimo 8 caracteres</div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12 col-sm-6">
+              <label class="form-label" for="gastoCategoria">
+                <i class="bi bi-tag me-1"></i>Categoría <span class="text-danger">*</span>
+              </label>
+              <!-- Poblado dinámicamente por script.js desde el objeto CATEGORIAS -->
+              <select class="form-select" id="gastoCategoria">
+                <option value="">Selecciona una categoría</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-sm-6">
+              <label class="form-label" for="gastoMonto">
+                <i class="bi bi-currency-dollar me-1"></i>Monto <span class="text-danger">*</span>
+              </label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="gastoMonto" placeholder="0" min="1" step="1" />
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <label class="form-label" for="gastoFecha">
+              <i class="bi bi-calendar-date me-1"></i>Fecha <span class="text-danger">*</span>
+            </label>
+            <input type="date" class="form-control" id="gastoFecha" />
+          </div>
+
+        </div><!-- /modal-body -->
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x me-1"></i>Cancelar
+          </button>
+          <button type="button" class="btn btn-primary" id="btnGuardarGasto">
+            <i class="bi bi-floppy me-1"></i>Guardar
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: PRESUPUESTO ===== -->
+  <div class="modal fade" id="modalPresupuesto" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content modal-gasto">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            <i class="bi bi-piggy-bank me-2"></i>Presupuesto Mensual
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label" for="inputPresupuesto">
+            Ingresa tu presupuesto mensual
+          </label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" id="inputPresupuesto" placeholder="0" min="1" step="1" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="btnGuardarPresupuesto">
+            <i class="bi bi-floppy me-1"></i>Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Script propio -->
+  <script src="script.js"></script>
+</body>
+</html>

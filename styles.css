@@ -1,0 +1,698 @@
+/* =============================================================
+   GastoSmart – Hoja de estilos
+   ============================================================= */
+
+/* ── Variables de tema ── */
+:root {
+  --color-primario:      #4f7ef7;
+  --color-primario-dark: #3562d4;
+  --color-acento:        #22d3ee;
+  --color-fondo-app:     #f0f4ff;
+  --color-navbar:        #1e2a4a;
+  --color-texto:         #1e2a4a;
+  --color-texto-suave:   #6b7280;
+  --color-borde:         #e2e8f0;
+  --color-tarjeta:       #ffffff;
+  --radio-borde:         14px;
+  --sombra-tarjeta:      0 4px 20px rgba(79, 126, 247, 0.10);
+  --sombra-hover:        0 8px 30px rgba(79, 126, 247, 0.18);
+
+  --fuente-principal: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  color: var(--color-texto);
+}
+
+/* ────────────────────────────────────────
+   LOGIN
+──────────────────────────────────────── */
+
+.login-body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8eeff 0%, #f0f4ff 60%, #e2f3ff 100%);
+  display: flex;
+  align-items: stretch;
+}
+
+.login-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Panel izquierdo (decorativo) */
+.login-panel-izquierdo {
+  flex: 1;
+  background: linear-gradient(160deg, var(--color-navbar) 0%, #263a7a 60%, #1a2f6a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto de fondo decorativo */
+.login-panel-izquierdo::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(79, 126, 247, 0.25) 0%, transparent 70%);
+  top: -80px;
+  left: -80px;
+  border-radius: 50%;
+}
+
+.login-panel-izquierdo::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
+  bottom: -60px;
+  right: -60px;
+  border-radius: 50%;
+}
+
+.panel-contenido {
+  position: relative;
+  z-index: 1;
+  color: white;
+  max-width: 380px;
+}
+
+.logo-grande {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-acento);
+}
+
+.panel-titulo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.panel-subtitulo {
+  color: rgba(255,255,255,0.75);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.panel-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.panel-lista li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.85rem;
+  color: rgba(255,255,255,0.9);
+  font-size: 0.95rem;
+}
+
+.panel-lista li i {
+  color: var(--color-acento);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+/* Panel derecho (formulario) */
+.login-panel-derecho {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: white;
+}
+
+@media (min-width: 992px) {
+  .login-panel-derecho {
+    flex: 0 0 460px;
+  }
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Logo para móvil */
+.logo-movil {
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primario);
+  margin-bottom: 1.5rem;
+}
+
+.logo-movil i {
+  font-size: 1.8rem;
+}
+
+/* Pestañas de autenticación */
+.login-tabs {
+  background: var(--color-fondo-app);
+  border-radius: 40px;
+  padding: 4px;
+  gap: 0;
+}
+
+.login-tabs .nav-link {
+  border-radius: 40px;
+  color: var(--color-texto-suave);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s;
+}
+
+.login-tabs .nav-link.active {
+  background: var(--color-primario);
+  color: white;
+  box-shadow: 0 2px 12px rgba(79, 126, 247, 0.35);
+}
+
+/* Títulos del formulario */
+.form-titulo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-texto);
+  margin-bottom: 0.25rem;
+}
+
+.form-subtitulo {
+  color: var(--color-texto-suave);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Botón principal de login */
+.btn-login {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-primario-dark));
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 14px rgba(79, 126, 247, 0.35);
+  transition: all 0.2s;
+}
+
+.btn-login:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 126, 247, 0.45);
+}
+
+/* Botón ojo (mostrar contraseña) */
+.btn-ojo {
+  border-color: #dee2e6;
+  color: var(--color-texto-suave);
+}
+
+/* Indicadores de requisitos de contraseña */
+.requisitos-contrasena {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  color: #dc3545;
+}
+
+.requisitos-contrasena span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+}
+
+.requisitos-contrasena span.cumplido {
+  color: #198754;
+}
+
+.requisitos-contrasena i {
+  font-size: 0.85rem;
+}
+
+/* Inputs generales */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(79, 126, 247, 0.15);
+}
+
+/* ────────────────────────────────────────
+   DASHBOARD
+──────────────────────────────────────── */
+
+.dashboard-body {
+  background: var(--color-fondo-app);
+  min-height: 100vh;
+}
+
+/* ── Navbar ── */
+.navbar-dashboard {
+  background: var(--color-navbar);
+  padding: 0.75rem 0;
+  box-shadow: 0 2px 20px rgba(30, 42, 74, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-dashboard {
+  color: white !important;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.brand-dashboard i {
+  color: var(--color-acento);
+}
+
+.nav-mes,
+.nav-usuario {
+  color: rgba(255,255,255,0.75) !important;
+  font-size: 0.9rem;
+}
+
+.btn-cerrar-sesion {
+  background: rgba(231, 76, 60, 0.15);
+  color: #ff8a80;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  transition: all 0.2s;
+}
+
+.btn-cerrar-sesion:hover {
+  background: rgba(231, 76, 60, 0.3);
+  color: #ff5252;
+}
+
+/* ── Tarjetas de resumen ── */
+.tarjeta-resumen {
+  background: var(--color-tarjeta);
+  border-radius: var(--radio-borde);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: var(--sombra-tarjeta);
+  border-left: 4px solid transparent;
+  transition: all 0.25s;
+  position: relative;
+}
+
+.tarjeta-resumen:hover {
+  box-shadow: var(--sombra-hover);
+  transform: translateY(-2px);
+}
+
+.tarjeta-icono {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.tarjeta-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta-etiqueta {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-texto-suave);
+}
+
+.tarjeta-valor {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-texto);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+/* Colores por tipo de tarjeta */
+.tarjeta-presupuesto {
+  border-left-color: var(--color-primario);
+}
+.tarjeta-presupuesto .tarjeta-icono {
+  background: rgba(79, 126, 247, 0.1);
+  color: var(--color-primario);
+}
+
+.tarjeta-gastado {
+  border-left-color: #f59e0b;
+}
+.tarjeta-gastado .tarjeta-icono {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+.tarjeta-restante {
+  border-left-color: #10b981;
+}
+.tarjeta-restante .tarjeta-icono {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.tarjeta-excedida {
+  border-left-color: #ef4444 !important;
+}
+.tarjeta-excedida .tarjeta-icono {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+}
+.tarjeta-excedida .tarjeta-valor {
+  color: #ef4444;
+}
+
+.tarjeta-registros {
+  border-left-color: #8b5cf6;
+}
+.tarjeta-registros .tarjeta-icono {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+/* Botón editar presupuesto (dentro de tarjeta) */
+.btn-editar-presupuesto {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: var(--color-texto-suave);
+  padding: 0.25rem 0.4rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.btn-editar-presupuesto:hover {
+  background: var(--color-fondo-app);
+  color: var(--color-primario);
+}
+
+/* ── Botón registrar gasto ── */
+.btn-agregar-gasto {
+  background: linear-gradient(135deg, var(--color-primario), var(--color-primario-dark));
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 14px rgba(79, 126, 247, 0.35);
+  transition: all 0.2s;
+}
+
+.btn-agregar-gasto:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 126, 247, 0.45);
+  color: white;
+}
+
+/* ── Selector de vista ── */
+.vista-selector .btn-outline-secondary {
+  font-size: 0.875rem;
+  padding: 0.45rem 0.9rem;
+  border-color: var(--color-borde);
+  color: var(--color-texto-suave);
+}
+
+.vista-selector .btn-check:checked + .btn-outline-secondary {
+  background: var(--color-primario);
+  border-color: var(--color-primario);
+  color: white;
+  box-shadow: none;
+}
+
+/* ── Panel de filtros ── */
+.panel-filtros {
+  background: var(--color-tarjeta);
+  border-radius: var(--radio-borde);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--sombra-tarjeta);
+}
+
+.filtro-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-texto-suave);
+  margin-bottom: 0.35rem;
+}
+
+.form-control-filtro {
+  border-radius: 8px;
+  border-color: var(--color-borde);
+  font-size: 0.875rem;
+}
+
+.btn-limpiar-filtros {
+  background: #fff5f5;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: 0.45rem 0.75rem;
+  transition: all 0.2s;
+}
+
+.btn-limpiar-filtros:hover {
+  background: #fecaca;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+/* ── Tabla de gastos ── */
+.tabla-wrapper {
+  background: var(--color-tarjeta);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-tarjeta);
+  overflow: hidden;
+}
+
+.tabla-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-texto);
+}
+
+.tabla-contador {
+  font-size: 0.8rem;
+  color: var(--color-texto-suave);
+  background: var(--color-fondo-app);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.tabla-gastos {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+}
+
+.tabla-gastos thead th {
+  background: var(--color-fondo-app);
+  color: var(--color-texto-suave);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  padding: 0.75rem 1rem;
+}
+
+.tabla-gastos tbody tr {
+  border-bottom: 1px solid var(--color-borde);
+  transition: background 0.15s;
+}
+
+.tabla-gastos tbody tr:hover {
+  background: #f8faff;
+}
+
+.tabla-gastos tbody tr:last-child {
+  border-bottom: none;
+}
+
+.tabla-gastos td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+  color: var(--color-texto);
+}
+
+.celda-fecha {
+  color: var(--color-texto-suave);
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.celda-descripcion {
+  font-weight: 500;
+}
+
+.celda-monto {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-texto);
+}
+
+/* Etiquetas de categoría */
+.etiqueta-categoria {
+  display: inline-block;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Botones de acción (editar / eliminar) */
+.btn-accion {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.85rem;
+  border-radius: 7px;
+  border: none;
+  margin: 0 2px;
+  transition: all 0.15s;
+}
+
+.btn-editar {
+  background: rgba(79, 126, 247, 0.1);
+  color: var(--color-primario);
+}
+
+.btn-editar:hover {
+  background: var(--color-primario);
+  color: white;
+}
+
+.btn-eliminar {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.btn-eliminar:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Estado vacío */
+.estado-vacio {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--color-texto-suave);
+}
+
+.estado-vacio i {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  opacity: 0.5;
+}
+
+.estado-vacio p {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.estado-vacio small {
+  font-size: 0.85rem;
+}
+
+/* ── Modales ── */
+.modal-gasto .modal-header {
+  background: var(--color-navbar);
+  color: white;
+  border-bottom: none;
+  border-radius: 16px 16px 0 0;
+}
+
+.modal-gasto .modal-title {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.modal-gasto .modal-content {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(30, 42, 74, 0.25);
+}
+
+.modal-gasto .modal-body {
+  padding: 1.5rem;
+}
+
+.modal-gasto .modal-footer {
+  border-top: 1px solid var(--color-borde);
+  padding: 1rem 1.5rem;
+}
+
+/* ── SweetAlert personalización ── */
+.swal-detalle-gasto p {
+  margin-bottom: 0.5rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 576px) {
+  .tarjeta-resumen {
+    padding: 1rem 1.1rem;
+  }
+
+  .tarjeta-valor {
+    font-size: 1.15rem;
+  }
+
+  .panel-filtros {
+    padding: 1rem;
+  }
+
+  .tabla-header {
+    padding: 0.9rem 1rem;
+  }
+
+  .tabla-gastos td,
+  .tabla-gastos th {
+    padding: 0.6rem 0.6rem;
+  }
+}
