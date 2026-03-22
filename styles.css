@@ -1,8 +1,3 @@
-/* =============================================================
-   GastoSmart – Hoja de estilos
-   ============================================================= */
-
-/* ── Variables de tema ── */
 :root {
   --color-primario:      #4f7ef7;
   --color-primario-dark: #3562d4;
@@ -29,10 +24,6 @@ body {
   color: var(--color-texto);
 }
 
-/* ────────────────────────────────────────
-   LOGIN
-──────────────────────────────────────── */
-
 .login-body {
   min-height: 100vh;
   background: linear-gradient(135deg, #e8eeff 0%, #f0f4ff 60%, #e2f3ff 100%);
@@ -46,7 +37,6 @@ body {
   min-height: 100vh;
 }
 
-/* Panel izquierdo (decorativo) */
 .login-panel-izquierdo {
   flex: 1;
   background: linear-gradient(160deg, var(--color-navbar) 0%, #263a7a 60%, #1a2f6a 100%);
@@ -58,7 +48,6 @@ body {
   overflow: hidden;
 }
 
-/* Efecto de fondo decorativo */
 .login-panel-izquierdo::before {
   content: "";
   position: absolute;
@@ -130,7 +119,6 @@ body {
   flex-shrink: 0;
 }
 
-/* Panel derecho (formulario) */
 .login-panel-derecho {
   width: 100%;
   max-width: 480px;
@@ -152,7 +140,6 @@ body {
   max-width: 400px;
 }
 
-/* Logo para móvil */
 .logo-movil {
   align-items: center;
   gap: 0.6rem;
@@ -166,7 +153,6 @@ body {
   font-size: 1.8rem;
 }
 
-/* Pestañas de autenticación */
 .login-tabs {
   background: var(--color-fondo-app);
   border-radius: 40px;
@@ -188,7 +174,6 @@ body {
   box-shadow: 0 2px 12px rgba(79, 126, 247, 0.35);
 }
 
-/* Títulos del formulario */
 .form-titulo {
   font-size: 1.4rem;
   font-weight: 800;
@@ -202,7 +187,6 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Botón principal de login */
 .btn-login {
   background: linear-gradient(135deg, var(--color-primario), var(--color-primario-dark));
   border: none;
@@ -219,13 +203,11 @@ body {
   box-shadow: 0 6px 20px rgba(79, 126, 247, 0.45);
 }
 
-/* Botón ojo (mostrar contraseña) */
 .btn-ojo {
   border-color: #dee2e6;
   color: var(--color-texto-suave);
 }
 
-/* Indicadores de requisitos de contraseña */
 .requisitos-contrasena {
   display: flex;
   flex-direction: column;
@@ -249,23 +231,17 @@ body {
   font-size: 0.85rem;
 }
 
-/* Inputs generales */
 .form-control:focus,
 .form-select:focus {
   border-color: var(--color-primario);
   box-shadow: 0 0 0 3px rgba(79, 126, 247, 0.15);
 }
 
-/* ────────────────────────────────────────
-   DASHBOARD
-──────────────────────────────────────── */
-
 .dashboard-body {
   background: var(--color-fondo-app);
   min-height: 100vh;
 }
 
-/* ── Navbar ── */
 .navbar-dashboard {
   background: var(--color-navbar);
   padding: 0.75rem 0;
@@ -308,7 +284,6 @@ body {
   color: #ff5252;
 }
 
-/* ── Tarjetas de resumen ── */
 .tarjeta-resumen {
   background: var(--color-tarjeta);
   border-radius: var(--radio-borde);
@@ -359,7 +334,6 @@ body {
   line-height: 1.2;
 }
 
-/* Colores por tipo de tarjeta */
 .tarjeta-presupuesto {
   border-left-color: var(--color-primario);
 }
@@ -403,7 +377,6 @@ body {
   color: #8b5cf6;
 }
 
-/* Botón editar presupuesto (dentro de tarjeta) */
 .btn-editar-presupuesto {
   position: absolute;
   top: 10px;
@@ -422,7 +395,6 @@ body {
   color: var(--color-primario);
 }
 
-/* ── Botón registrar gasto ── */
 .btn-agregar-gasto {
   background: linear-gradient(135deg, var(--color-primario), var(--color-primario-dark));
   color: white;
@@ -441,7 +413,6 @@ body {
   color: white;
 }
 
-/* ── Selector de vista ── */
 .vista-selector .btn-outline-secondary {
   font-size: 0.875rem;
   padding: 0.45rem 0.9rem;
@@ -456,7 +427,6 @@ body {
   box-shadow: none;
 }
 
-/* ── Panel de filtros ── */
 .panel-filtros {
   background: var(--color-tarjeta);
   border-radius: var(--radio-borde);
@@ -493,7 +463,6 @@ body {
   color: #b91c1c;
 }
 
-/* ── Tabla de gastos ── */
 .tabla-wrapper {
   background: var(--color-tarjeta);
   border-radius: var(--radio-borde);
@@ -574,7 +543,6 @@ body {
   color: var(--color-texto);
 }
 
-/* Etiquetas de categoría */
 .etiqueta-categoria {
   display: inline-block;
   padding: 0.3rem 0.75rem;
@@ -584,7 +552,6 @@ body {
   white-space: nowrap;
 }
 
-/* Botones de acción (editar / eliminar) */
 .btn-accion {
   padding: 0.3rem 0.5rem;
   font-size: 0.85rem;
@@ -614,7 +581,6 @@ body {
   color: white;
 }
 
-/* Estado vacío */
 .estado-vacio {
   text-align: center;
   padding: 3rem 1rem;
@@ -637,7 +603,6 @@ body {
   font-size: 0.85rem;
 }
 
-/* ── Modales ── */
 .modal-gasto .modal-header {
   background: var(--color-navbar);
   color: white;
@@ -666,14 +631,12 @@ body {
   padding: 1rem 1.5rem;
 }
 
-/* ── SweetAlert personalización ── */
 .swal-detalle-gasto p {
   margin-bottom: 0.5rem;
   text-align: left;
   font-size: 0.95rem;
 }
 
-/* ── Responsive ── */
 @media (max-width: 576px) {
   .tarjeta-resumen {
     padding: 1rem 1.1rem;
