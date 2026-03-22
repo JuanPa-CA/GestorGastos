@@ -4,26 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gestor de Gastos</title>
-
-  <!-- Bootstrap 5 -->
+ <meta name="google-site-verification" content="google745b65ed95c58872.html" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
-  <!-- Estilos propios -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="dashboard-body">
 
-  <!-- ===== BARRA DE NAVEGACIÓN ===== -->
   <nav class="navbar navbar-expand-lg navbar-dashboard">
     <div class="container-fluid px-4">
 
-      <!-- Logo -->
       <a class="navbar-brand brand-dashboard" href="#">
         <i class="bi bi-wallet2 me-2"></i>GastoSmart
       </a>
 
-      <!-- Toggle para móvil -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDashboard">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,14 +25,12 @@
       <div class="collapse navbar-collapse" id="navbarDashboard">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
 
-          <!-- Mes actual -->
           <li class="nav-item">
             <span class="nav-link nav-mes" id="etiquetaMesActual">
               <i class="bi bi-calendar3 me-1"></i><span id="textoMes">—</span>
             </span>
           </li>
 
-          <!-- Usuario -->
           <li class="nav-item">
             <span class="nav-link nav-usuario">
               <i class="bi bi-person-circle me-1"></i>
@@ -46,7 +38,6 @@
             </span>
           </li>
 
-          <!-- Cerrar sesión -->
           <li class="nav-item">
             <button class="btn btn-cerrar-sesion" id="btnCerrarSesion">
               <i class="bi bi-box-arrow-right me-1"></i>Cerrar Sesión
@@ -58,13 +49,10 @@
     </div>
   </nav>
 
-  <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <main class="container-fluid px-4 py-4">
 
-    <!-- Fila de tarjetas de resumen -->
     <div class="row g-3 mb-4">
 
-      <!-- Tarjeta: Presupuesto mensual -->
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="tarjeta-resumen tarjeta-presupuesto">
           <div class="tarjeta-icono"><i class="bi bi-piggy-bank"></i></div>
@@ -78,7 +66,6 @@
         </div>
       </div>
 
-      <!-- Tarjeta: Total gastado (mes) -->
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="tarjeta-resumen tarjeta-gastado">
           <div class="tarjeta-icono"><i class="bi bi-receipt"></i></div>
@@ -89,7 +76,6 @@
         </div>
       </div>
 
-      <!-- Tarjeta: Presupuesto restante -->
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="tarjeta-resumen tarjeta-restante">
           <div class="tarjeta-icono"><i class="bi bi-bar-chart-line"></i></div>
@@ -100,7 +86,6 @@
         </div>
       </div>
 
-      <!-- Tarjeta: Total de registros -->
       <div class="col-12 col-sm-6 col-xl-3">
         <div class="tarjeta-resumen tarjeta-registros">
           <div class="tarjeta-icono"><i class="bi bi-list-check"></i></div>
@@ -111,9 +96,8 @@
         </div>
       </div>
 
-    </div><!-- /row tarjetas -->
+    </div>
 
-    <!-- Fila: Controles superiores (botón agregar + vista) -->
     <div class="row align-items-center mb-3 g-2">
       <div class="col-auto">
         <button class="btn btn-agregar-gasto" id="btnAbrirModalGasto">
@@ -121,7 +105,6 @@
         </button>
       </div>
       <div class="col-auto ms-auto">
-        <!-- Selector de vista -->
         <div class="btn-group vista-selector" role="group" aria-label="Seleccionar vista">
           <input type="radio" class="btn-check" name="vistaGastos" id="vistaUltimoMes" value="mes" checked />
           <label class="btn btn-outline-secondary" for="vistaUltimoMes">
@@ -135,7 +118,6 @@
       </div>
     </div>
 
-    <!-- Panel de filtros -->
     <div class="panel-filtros mb-4" id="panelFiltros">
       <div class="row g-2 align-items-end">
 
@@ -150,7 +132,7 @@
           <label class="form-label filtro-label">
             <i class="bi bi-tag me-1"></i>Categoría
           </label>
-          <!-- Poblado dinámicamente por script.js desde el objeto CATEGORIAS -->
+
           <select class="form-select form-control-filtro" id="filtroCategoria">
             <option value="">Todas</option>
           </select>
@@ -184,9 +166,8 @@
         </div>
 
       </div>
-    </div><!-- /panel-filtros -->
+    </div>
 
-    <!-- Tabla de gastos -->
     <div class="tabla-wrapper">
       <div class="tabla-header">
         <h5 class="tabla-titulo mb-0" id="tituloTabla">Gastos del mes actual</h5>
@@ -205,23 +186,20 @@
             </tr>
           </thead>
           <tbody id="cuerpoTablaGastos">
-            <!-- Filas generadas por JavaScript -->
           </tbody>
         </table>
       </div>
 
-      <!-- Estado vacío -->
       <div class="estado-vacio d-none" id="estadoVacio">
         <i class="bi bi-inbox"></i>
         <p>No hay gastos para mostrar</p>
         <small>Intenta ajustar los filtros o registra un nuevo gasto</small>
       </div>
 
-    </div><!-- /tabla-wrapper -->
+    </div>
 
   </main>
 
-  <!-- ===== MODAL: REGISTRAR / EDITAR GASTO ===== -->
   <div class="modal fade" id="modalGasto" tabindex="-1" aria-labelledby="tituloModalGasto" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content modal-gasto">
@@ -235,7 +213,6 @@
 
         <div class="modal-body">
 
-          <!-- ID oculto para modo edición -->
           <input type="hidden" id="gastoId" />
 
           <div class="mb-3">
@@ -252,7 +229,6 @@
               <label class="form-label" for="gastoCategoria">
                 <i class="bi bi-tag me-1"></i>Categoría <span class="text-danger">*</span>
               </label>
-              <!-- Poblado dinámicamente por script.js desde el objeto CATEGORIAS -->
               <select class="form-select" id="gastoCategoria">
                 <option value="">Selecciona una categoría</option>
               </select>
@@ -276,7 +252,7 @@
             <input type="date" class="form-control" id="gastoFecha" />
           </div>
 
-        </div><!-- /modal-body -->
+        </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
@@ -291,7 +267,6 @@
     </div>
   </div>
 
-  <!-- ===== MODAL: PRESUPUESTO ===== -->
   <div class="modal fade" id="modalPresupuesto" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content modal-gasto">
@@ -320,11 +295,8 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- Script propio -->
   <script src="script.js"></script>
 </body>
 </html>
